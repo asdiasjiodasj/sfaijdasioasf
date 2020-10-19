@@ -7554,11 +7554,6 @@ game.Players.LocalPlayer.Chatted:connect(function(msg)
 					"all"
 				}
 				game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-	elseif msg:sub(1,6) == ".uilk " then
-		target = FindTarget(msg:sub(7))
-		if target.Name ~= "Shadows_Overlord" then
-			while wait(.5) do
-				rape(target)
 			end
 		end
 	elseif msg:sub(1,7) == ".bring " then
@@ -7638,8 +7633,6 @@ game.Players.LocalPlayer.Chatted:connect(function(msg)
 			end
 		until i == 0
 	end
-end
-end
 end)
 
 for i,v in pairs(game.Players:GetPlayers()) do
