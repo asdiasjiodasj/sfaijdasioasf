@@ -16,7 +16,7 @@ _G.whitelist = {
     ["h_6xi"] = true,
     ["damianfeliks"] = true,
     ["coolgirl245339"] = true,
-    ["SMALLHERE"] = true
+    ["SMALLHERE"] = false
 }
 
 if syn then
