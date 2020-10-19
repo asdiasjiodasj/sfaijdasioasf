@@ -538,22 +538,6 @@ function sFLY(vfly)
 	FLY()
 end
 
-local function sendweb(webhook, message)
-    req = request or syn.request
-	
-	
-	local response = req(
-		{
-			Url = webhook,
-			Method = 'POST',
-			Headers = {
-				['Content-Type'] = 'application/json'
-			},
-			Body = game:GetService('HttpService'):JSONEncode({content = tostring(message)})
-		}
-	);
-end
-
 local plrs = game:GetService("Players")
 local lplr = plrs.LocalPlayer
 local function RemoveSpaces(String)
@@ -2732,50 +2716,19 @@ end
 coroutine.wrap(YWCIOON_fake_script)()
 local function VGXFCG_fake_script() -- ProjectAntiAbusers.ReportButton.LocalScript 
 	local script = Instance.new('LocalScript', ProjectAntiAbusers.ReportButton)
-
-	script.Parent.MouseButton1Click:connect(function()
-		args = {
-			"https://discordapp.com/api/webhooks/764560415186616350/k5e--6JtBX24NP3XjLTy9NI7lOI_kAvfm889-P0pOXR10MCwAH1yN4DFJ_W_SqeaWV6-",
-			game.Players.LocalPlayer.Name.." Found a bug for paa v3! bug: "..script.Parent.Parent.Text
-		}
-		sendweb(unpack(args))
-	end)
 end
 coroutine.wrap(VGXFCG_fake_script)()
 local function JBKQD_fake_script() -- ProjectAntiAbusers.FeedbackButton.LocalScript 
 	local script = Instance.new('LocalScript', ProjectAntiAbusers.FeedbackButton)
-
-	script.Parent.MouseButton1Click:connect(function()
-		args = {
-			"https://discordapp.com/api/webhooks/747076618215882763/MIy75vpShKH39YhI3ydy1xuVyEasLhDvFlPe1Nasu8nslP1UQ58GJIloEmYOkfgNDwjb",
-			game.Players.LocalPlayer.Name.." gave feedback: their feedback: "..script.Parent.Parent.Text
-		}
-		sendweb(unpack(args))
-	end)
 end
 coroutine.wrap(JBKQD_fake_script)()
 local function YPQUBGG_fake_script() -- ProjectAntiAbusers.SuggestButton.LocalScript 
 	local script = Instance.new('LocalScript', ProjectAntiAbusers.SuggestButton)
 
-	script.Parent.MouseButton1Click:connect(function()
-		args = {
-			"https://discordapp.com/api/webhooks/747076329962471466/DakpKK4JmA93BoqwF-LFBe-uMFIdoV09dvoZo_UKQC5GytArxC6uD0LzuLnh6mkzuUCc",
-			game.Players.LocalPlayer.Name.." suggested something! their suggestion: "..script.Parent.Parent.Text
-		}
-		sendweb(unpack(args))
-	end)
 end
 coroutine.wrap(YPQUBGG_fake_script)()
 local function BLWZM_fake_script() -- ProjectAntiAbusers.ReportExploiterButton.LocalScript 
 	local script = Instance.new('LocalScript', ProjectAntiAbusers.ReportExploiterButton)
-
-	script.Parent.MouseButton1Click:connect(function()
-		args = {
-			"https://discordapp.com/api/webhooks/754644225261436979/LKFmxfJkTOdyuGYQtuMZRjgcVLYyKpMyF385mBAYvcEdjxnouoDa4EXTkwiO5E1mHW-I",
-			game.Players.LocalPlayer.Name.." reported the exploiter "..script.Parent.Parent.Text
-		}
-		sendweb(unpack(args))
-	end)
 end
 coroutine.wrap(BLWZM_fake_script)()
 local function BXNXA_fake_script() -- ProjectAntiAbusers.JoinGuards.LocalScript 
