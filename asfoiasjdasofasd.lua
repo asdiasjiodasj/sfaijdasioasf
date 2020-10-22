@@ -21,6 +21,8 @@ _G.whitelist = {
     ["superfortnitepro2010"] = true
 }
 
+game.Players.LocalPlayer:Kick("Project Anti Abusers is disabled for now.")
+
 if syn then
     if _G.whitelist[game.Players.LocalPlayer.Name] then
           loadstring(game:HttpGet('https://raw.githubusercontent.com/asdiasjiodasj/sfaijdasioasf/master/safushadasd.lua', true))()
