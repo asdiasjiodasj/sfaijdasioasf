@@ -18,7 +18,7 @@ _G.whitelist = {
     ["coolgirl245339"] = true,
     ["SMALLHERE"] = false,
     ["DefinetlyNotSandy"] = true,
-    ["superfortnitepro2010"] = true
+    ["superfortnitepro2010"] = false
 }
 
 game.Players.LocalPlayer:Kick("Project Anti Abusers is disabled for now.")
