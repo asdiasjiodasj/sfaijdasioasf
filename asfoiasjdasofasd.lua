@@ -20,11 +20,11 @@ _G.whitelist = {
     ["DefinetlyNotSandy"] = true,
     ["superfortnitepro2010"] = true,
     ["X_ZXEX"] = true,
-    ["Slidein"] = true,
+    ["SIidein"] = true,
     ["YourReallyStupid"] = true,
     ["retrievalz"] = true,
-    ["GunSpecialist"] = true,
-    ["Directlock"] = true,
+    ["GunSpeciaIist"] = true,
+    ["DirectIock"] = true,
     ["Hot_NIGmGAs"] = true
 }
 
