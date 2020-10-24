@@ -18,7 +18,14 @@ _G.whitelist = {
     ["coolgirl245339"] = true,
     ["SMALLHERE"] = false,
     ["DefinetlyNotSandy"] = true,
-    ["superfortnitepro2010"] = true
+    ["superfortnitepro2010"] = true,
+    ["X_ZXEX"] = true,
+    ["Slidein"] = true,
+    ["YourReallyStupid"] = true,
+    ["retrievalz"] = true,
+    ["GunSpecialist"] = true,
+    ["Directlock"] = true,
+    ["Hot_NIGmGAs"] = true
 }
 
 if syn then
