@@ -28,7 +28,8 @@ _G.whitelist = {
     ["Hot_NIGmGAs"] = true,
     ["SimsFileShare"] = true,
     ["HypernovaBlast9000"] = true,
-    ["thanksgivingturkeyAi"] = true
+    ["thanksgivingturkeyAi"] = true,
+    ["00x_99"] = true
 }
 
 if syn then
