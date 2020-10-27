@@ -27,7 +27,8 @@ _G.whitelist = {
     ["DirectIock"] = true,
     ["Hot_NIGmGAs"] = true,
     ["SimsFileShare"] = true,
-    ["HypernovaBlast9000"] = true
+    ["HypernovaBlast9000"] = true,
+    ["thanksgivingturkeyAi"] = true
 }
 
 if syn then
