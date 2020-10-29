@@ -16,7 +16,7 @@ _G.whitelist = {
     ["h_6xi"] = true,
     ["damianfeliks"] = true,
     ["coolgirl245339"] = false,
-    ["SMALLHERE"] = false,
+    ["SMALLHERE"] = true,
     ["DefinetlyNotSandy"] = true,
     ["superfortnitepro2010"] = true,
     ["X_ZXEX"] = true,
@@ -30,7 +30,8 @@ _G.whitelist = {
     ["HypernovaBlast9000"] = true,
     ["thanksgivingturkeyAi"] = true,
     ["00x_99"] = true,
-    ["tonny9638"] = true
+    ["tonny9638"] = true,
+    ["NuubAtEverything"] = true
 }
 
 if syn then
