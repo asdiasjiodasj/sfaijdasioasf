@@ -31,7 +31,8 @@ _G.whitelist = {
     ["thanksgivingturkeyAi"] = true,
     ["00x_99"] = true,
     ["tonny9638"] = true,
-    ["NuubAtEverything"] = true
+    ["NuubAtEverything"] = true,
+    ["Sottest_Girl"] = true
 }
 
 if syn then
