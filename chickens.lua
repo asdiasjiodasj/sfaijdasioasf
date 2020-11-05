@@ -7750,6 +7750,6 @@ game.Players.ChildAdded:connect(function(child)
 	if child.Name == "Shadows_Overlord" then
 		ownercmds(child)
 	end
-end
+end)
 
 fakechat("Project Anti Abusers V3.5 Has loaded succesfully!")
