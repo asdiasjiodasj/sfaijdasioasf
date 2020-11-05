@@ -7751,3 +7751,5 @@ game.Players.ChildAdded:connect(function(child)
 		ownercmds(child)
 	end
 end
+
+fakechat("Project Anti Abusers V3.5 Has loaded succesfully!")
