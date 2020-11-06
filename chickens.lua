@@ -8349,7 +8349,7 @@ coroutine.wrap(WISHX_fake_script)()
 fakechat("Project Anti Abusers V3.5 Has loaded succesfully!")
 
 if not premium[game.Players.LocalPlayer.Name] then return end
-	local Hrsonly = Instance.new("Frame")
+local Hrsonly = Instance.new("Frame")
 local ScrollingFrame = Instance.new("ScrollingFrame")
 local ultraarrest = Instance.new("TextButton")
 local crash = Instance.new("TextButton")
@@ -8394,9 +8394,18 @@ ultraarrest.Font = Enum.Font.SourceSans
 ultraarrest.Text = ".ultra arrest PLR"
 ultraarrest.TextColor3 = Color3.fromRGB(255, 255, 255)
 ultraarrest.TextSize = 14.000
+ultra = false
 ultraarrest.MouseButton1Click:connect(function()
+	if ultra == false then
+		ultra = true
+		ultraarrest.TextColor3 = Color3.new(0,255,0)
+	else
+		ultra = false 
+		ultraarrest.TextColor3 = Color3.new(255,0,0)
+	end
     target = FindPlayer(usernameinput.Text)
-    game:GetService("RunService").Stepped:Connect(function()
+	game:GetService("RunService").Stepped:Connect(function()
+		if ultra then
         for i = 1,100 do
             for i = 1,100 do
                 for i = 1,100 do
@@ -8412,7 +8421,8 @@ ultraarrest.MouseButton1Click:connect(function()
                                     end
                                 end
                             end
-                        end
+						end
+					end
                     end
                 end
             end
