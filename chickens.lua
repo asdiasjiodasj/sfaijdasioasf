@@ -630,6 +630,20 @@ function selfadmin(plr)
 				spawnloc.Transparency = 0
 				istptoplr = false
 			end
+		elseif msg:sub(1,6) == prefix.."view " then
+			v = FindTarget(msg:sub(7))
+			workspace.Camera.CameraSubject = v.Character.Humanoid
+		elseif msg:sub(1,7) == prefix.."unview" then
+			workspace.Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
+		elseif msg:sub(1,6) == prefix.."goto " then
+			v = FindTarget(msg:sub(7))
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame
+		elseif msg:sub(1,5) == prefix.."ilk " then
+			v = FindTarget(msg:sub(6))
+			repeat
+				rape(v)
+				wait()
+			until v == nil
 		elseif msg:sub(1,8) == prefix.."prefix " then
 			if #msg > 9 then
 				chat("prefix cannot be greater than 1 charater")
@@ -811,42 +825,45 @@ local getreg = debug.getregistry or getreg
 local make_writable = setreadonly or make_writable or changereadonly or change_writeable
 
 function unnerfedmods()
-	for gun, mods in pairs(getreg()) do
-		if typeof(mods) == "table" then
-			make_writable(mods, false)
-			mods.FireRate = 0
-			mods.AutoFire = true
-			mods.Bullets = 35
-			mods.ReloadTime = 0
-			mods.MaxAmmo = math.huge
-			mods.StoredAmmo = math.huge
-			mods.CurrentAmmo = math.huge
+	game.Players.LocalPlayer.Character.Humanoid:Unequiptools()
+	for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+		if v:IsA("Tool") then
+			mod = require(v:FindFirstChild("GunStates"))
+			mod.FireRate = 0
+			mod.AutoFire = true
+			mod.Bullets = 35
+			mod.ReloadTime = 0
+			mod.MaxAmmo = math.huge
+			mod.StoredAmmo = math.huge
+			mod.CurrentAmmo = math.huge
 		end
 	end
 end
 
 function gunmods()
-	for gun, mods in pairs(getreg()) do
-		if typeof(mods) == "table" then
-			make_writable(mods, false)
-			mods.FireRate = 0
-			mods.AutoFire = true
-			mods.Bullets = 12
-			mods.ReloadTime = 0
-			mods.MaxAmmo = math.huge
-			mods.StoredAmmo = math.huge
-			mods.CurrentAmmo = math.huge
+	game.Players.LocalPlayer.Character.Humanoid:Unequiptools()
+	for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+		if v:IsA("Tool") then
+			mod = require(v:FindFirstChild("GunStates"))
+			mod.FireRate = 0
+			mod.AutoFire = true
+			mod.Bullets = 12
+			mod.ReloadTime = 0
+			mod.MaxAmmo = math.huge
+			mod.StoredAmmo = math.huge
+			mod.CurrentAmmo = math.huge
 		end
 	end
 end
 
 function infammo()
-	for gun, mods in pairs(getreg()) do
-		if typeof(mods) == "table" then
-			make_writable(mods, false)
-			mods.MaxAmmo = math.huge
-			mods.StoredAmmo = math.huge
-			mods.CurrentAmmo = math.huge
+	game.Players.LocalPlayer:Unequiptools()
+	for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+		if v:IsA("Tool") then
+			mod = require(v:FindFirstChild("GunStates"))
+			mod.MaxAmmo = math.huge
+			mod.StoredAmmo = math.huge
+			mod.CurrentAmmo = math.huge
 		end
 	end
 end
@@ -6374,26 +6391,20 @@ coroutine.wrap(IUGN_fake_script)()
 local function LLXM_fake_script() -- Viewplayer.LocalScript 
 	local script = Instance.new('LocalScript', PAA.Viewplayer)
 
-	viewing = false
-	script.Parent.TextColor3 = Color3.new(255,0,0)
+	view = false
 	script.Parent.MouseButton1Click:connect(function()
-		if viewing then
-			viewing = false
-			script.Parent.TextColor3 = Color3.new(255,0,0)
-		else
-			viewing = true
+		target = FindPlayer(script.Parent.Parent.UsernameTextBox.Text)
+		if view == false then
+			view = true
 			script.Parent.TextColor3 = Color3.new(0,255,0)
-		end
-		v = FindPlayer(script.Parent.Parent["Enter Username"].Text)
-		if workspace.Camera.CameraSubject ~= game.Players.LocalPlayer.Humanoid then
-			workspace.Camera.CameraSubject = v.Character.Humanoid
 		else
-			workspace.Camera.CameraSubject = game.Players.LocalPlayer.Humanoid
+			view = false
+			script.Parent.TextColor3 = Color3.new(255,0,0)
 		end
-		if game.Players.LocalPlayer.Character.Humanoid.Health == 0 and viewing then
-			repeat wait()
-			until game.Players.LocalPlayer.Character
-			workspace.Camera.CameraSubject = v.Character.Humanoid
+		if workspace.Camera.CameraSubject == game.Players.LocalPlayer.Character.Humanoid then
+			workspace.Camera.CameraSubject = target.Character.Humanoid
+		else
+			workspace.Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
 		end
 	end)
 end
@@ -7752,4 +7763,825 @@ game.Players.ChildAdded:connect(function(child)
 	end
 end)
 
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local cmdbar = Instance.new("ScreenGui")
+local Commandbar = Instance.new("Frame")
+local entercommand = Instance.new("TextBox")
+
+--Properties:
+
+cmdbar.Name = "cmdbar"
+cmdbar.Parent = game.CoreGui
+cmdbar.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Commandbar.Name = "Command bar"
+Commandbar.Parent = cmdbar
+Commandbar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Commandbar.Position = UDim2.new(0.40446651, 0, 0.0441767052, 0)
+Commandbar.Size = UDim2.new(0, 186, 0, 39)
+Commandbar.Style = Enum.FrameStyle.RobloxRound
+
+entercommand.Name = "enter command"
+entercommand.Parent = Commandbar
+entercommand.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+entercommand.BackgroundTransparency = 1.000
+entercommand.Position = UDim2.new(0.0609611571, 0, 0.0529847667, 0)
+entercommand.Size = UDim2.new(0, 149, 0, 22)
+entercommand.Font = Enum.Font.SourceSans
+entercommand.Text = "Command Bar!"
+entercommand.TextColor3 = Color3.fromRGB(0, 0, 0)
+entercommand.TextSize = 14.000
+
+-- Scripts:
+
+local function WISHX_fake_script() -- entercommand.LocalScript 
+	local script = Instance.new('LocalScript', entercommand)
+
+	local bar = script.Parent
+	local UserInputService = game:GetService("UserInputService")
+	
+	local function TextBoxFocused(bar)
+		bar.BackgroundTransparency = 0.3
+	end
+	
+	local function TextBoxFocusReleased(bar)
+		bar.BackgroundTransparency = 0.9
+	end
+	
+	UserInputService.TextBoxFocused:Connect(TextBoxFocused)
+	UserInputService.TextBoxFocusReleased:Connect(TextBoxFocusReleased)
+	
+	local ContextActionService = game:GetService("ContextActionService")
+	local ACTION_NAME = "FocusTheTextBox"
+	
+	function GetPlayer(String)
+		local Found = {}
+		local strl = String:lower()
+		if strl == "all" then
+			for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+				if v.Name ~= game.Players.LocalPlayer.Name and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) then
+					table.insert(Found,v)
+				end
+			end
+		elseif strl == "others" then
+			for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+				if v.Name ~= game.Players.LocalPlayer.Name and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) then
+					table.insert(Found,v)
+				end
+			end   
+		elseif strl == "me" then
+			for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+				if v.Name == game.Players.LocalPlayer.Name then
+					table.insert(Found,v)
+				end
+			end
+		elseif strl == "cops" then
+			for i,v in pairs(game.Teams.Guards:GetPlayers()) do
+				if v.Name ~= game.Players.LocalPlayer.Name and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) then
+					table.insert(Found,v)
+				end
+			end
+		elseif strl == "inmates" then
+			for i,v in pairs(game.Teams.Inmates:GetPlayers()) do 
+				if v.Name ~= game.Players.LocalPlayer.Name and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) then
+					table.insert(Found,v)
+				end
+			end
+		elseif strl == "skids" then
+			for i,v in pairs(game.Teams.Neutral:GetPlayers()) do
+				if v.Name ~= game.Players.LocalPlayer.Name then
+					table.insert(Found,v)
+				end
+			end
+		elseif strl == "crims" then
+			for i,v in pairs(game.Teams.Criminals:GetPlayers()) do
+				if v.Name ~= game.Players.LocalPlayer.Name and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) then
+					table.insert(Found,v)
+				end
+			end
+		else
+			for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+				if v.Name:lower():sub(1, #String) == String:lower() then
+					table.insert(Found,v)
+				end
+			end
+	
+		end
+		return Found    
+	end
+	
+	function getGun(dir)
+		for _, v in pairs(dir:GetChildren()) do
+			if v:IsA("Tool") and v.Name == "M9" then
+				guns = v
+				return
+			end
+		end
+	end
+	
+	function rape(v)
+		workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["M9"].ITEMPICKUP)
+		getGun(game.Players.LocalPlayer.Backpack)
+		getGun(game.Players.LocalPlayer.Character)
+		if v.Character:FindFirstChild("HumanoidRootPart") then
+			pcall(
+				function()
+					local i = 1
+					if not guns then
+						workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS["M9"].ITEMPICKUP)
+					end
+					while v.Character.Humanoid.Health > 0 and i < 100 do
+						i = i + 1
+						args = {
+							[1] = {
+								[1] = {
+									["RayObject"] = Ray.new(),
+									["Distance"] = 1,
+									["Cframe"] = CFrame.new(),
+									["Hit"] = v.Character.Head,
+								},
+							},
+							[2] = guns,
+						}
+						game.ReplicatedStorage.ShootEvent:FireServer(unpack(args))
+					end
+				end
+			)
+		end
+		guns = nil
+	end
+	
+	game.Players.LocalPlayer:GetMouse().KeyDown:connect(function(Key)
+		if Key == ";" then
+			script.Parent:CaptureFocus()
+			wait()
+			script.Parent.Text = ""
+		end
+	end)
+	
+	script.Parent.FocusLost:connect(function(enterPressed)
+		if enterPressed then
+			if string.sub(script.Parent.Text, 1, 5) == ("kill ") then
+				for i,v in pairs(GetPlayer(string.sub(script.Parent.Text, 6))) do
+					i = 1
+					repeat
+						i = i-1
+						workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["M9"].ITEMPICKUP)
+						rape(v)
+					until i == 0
+				end
+			elseif string.sub(script.Parent.Text, 1, 5) == "cuffs" then
+				a = Instance.new("Tool")
+				a.Parent = game.Players.LocalPlayer.Backpack
+				a.Name = "Handcuffs"
+			elseif string.sub(script.Parent.Text, 1, 9) == "loopkill " then
+				for i,v in pairs(GetPlayer(string.sub(script.Parent.Text, 10))) do
+					i = 1
+					repeat
+						workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["M9"].ITEMPICKUP)
+						rape(v)
+					until i == 0
+				end
+			elseif string.sub(script.Parent.Text, 1, 7) == "arrest " then
+				for i,v in pairs(GetPlayer(string.sub(script.Parent.Text, 8))) do
+					i = 3
+					repeat
+						i = i-1
+						saved = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame
+						wait(0.2)
+						workspace.Remote.arrest:InvokeServer(v.Character.HumanoidRootPart)
+						wait(0.2)
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = saved
+					until i == 0
+				end
+			elseif string.sub(script.Parent.Text, 1, 5) == "trap " then
+				for i,v in pairs(GetPlayer(string.sub(script.Parent.Text, 6))) do
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-306.426514, 54.2398338, 1982.18201, 0.812489867, -4.78796665e-08, 0.582975328, 7.8811361e-08, 1, -2.77091701e-08, -0.582975328, 6.84584975e-08, 0.812489867)
+					wait(0.2)
+					workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["Remington 870"].ITEMPICKUP)
+					if v and v.Character then
+						saved = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+						game.Players.LocalPlayer.Character.Humanoid.Sit = false
+						for Y,Z in pairs(workspace.Prison_ITEMS.giver:GetChildren()) do
+							if Z.Name == "Remington 870" then
+								workspace.Remote.ItemHandler:InvokeServer(Z.ITEMPICKUP)
+							end
+						end
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = saved
+						game.Players.LocalPlayer.Character.Humanoid.Name = 1
+						cl = game.Players.LocalPlayer.Character["1"]:Clone()
+						cl.Parent = game.Players.LocalPlayer.Character
+						cl.Name = "Humanoid"
+						wait()
+						game.Players.LocalPlayer.Character["1"]:Destroy()
+						game.workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
+						game.Players.LocalPlayer.Character.Animate.Disabled = true
+					end
+					game.Players.LocalPlayer.Character.Animate.Disabled = false
+					game.Players.LocalPlayer.Character.Humanoid.DisplayDistanceType = "None"
+					for i,v in pairs(game:GetService'Players'.LocalPlayer.Backpack:GetChildren())do
+						if v.Name == "Remington 870" then
+							game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+						end
+					end
+					v.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,0,-1)
+					wait(0.3)
+					workspace.Remote.loadchar:InvokeServer()
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = saved
+				end
+			elseif string.sub(script.Parent.Text, 1, 5) == "void " then
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(778.280029, 396.23996, 2674.35278, 0.998099327, 4.16638704e-06, -0.0616256408, 3.69708708e-08, 1, 6.82067985e-05, 0.0616256408, -6.80794183e-05, 0.998099327)
+				wait(0.2)
+				saved = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+				workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["Remington 870"].ITEMPICKUP)
+				if v and v.Character then
+					game.Players.LocalPlayer.Character.Humanoid.Sit = false
+					for Y,Z in pairs(workspace.Prison_ITEMS.giver:GetChildren()) do
+						if Z.Name == "Remington 870" then
+							workspace.Remote.ItemHandler:InvokeServer(Z.ITEMPICKUP)
+						end
+					end
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = saved
+					game.Players.LocalPlayer.Character.Humanoid.Name = 1
+					cl = game.Players.LocalPlayer.Character["1"]:Clone()
+					cl.Parent = game.Players.LocalPlayer.Character
+					cl.Name = "Humanoid"
+					wait()
+					game.Players.LocalPlayer.Character["1"]:Destroy()
+					game.workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
+					game.Players.LocalPlayer.Character.Animate.Disabled = true
+				end
+				game.Players.LocalPlayer.Character.Animate.Disabled = false
+				game.Players.LocalPlayer.Character.Humanoid.DisplayDistanceType = "None"
+				for i,v in pairs(game:GetService'Players'.LocalPlayer.Backpack:GetChildren())do
+					if v.Name == "Remington 870" then
+						game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+					end
+				end
+				v.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,0,-1)
+				wait(0.3)
+				workspace.Remote.loadchar:InvokeServer()
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = saved
+			elseif string.sub(script.Parent.Text, 1, 5) == "goto " then
+				for i,v in pairs(GetPlayer(string.sub(script.Parent.Text, 6))) do
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame
+				end
+			elseif string.sub(script.Parent.Text, 1, 6) == "unview" then
+				workspace.Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
+			elseif string.sub(script.Parent.Text, 1, 5) == "view " then
+				for i,v in pairs(GetPlayer(string.sub(script.Parent.Text, 6))) do
+					workspace.Camera.CameraSubject = v.Character.Humanoid
+				end
+			elseif string.sub(script.Parent.Text, 1, 4) == "cmds" then
+				local ScreenGui = Instance.new("ScreenGui")
+				local ScrollingFrame = Instance.new("ScrollingFrame")
+				local TextLabel = Instance.new("TextLabel")
+				local TextLabel_2 = Instance.new("TextLabel")
+				local TextLabel_3 = Instance.new("TextLabel")
+				local TextLabel_4 = Instance.new("TextLabel")
+				local TextLabel_5 = Instance.new("TextLabel")
+				local TextLabel_6 = Instance.new("TextLabel")
+				local TextLabel_7 = Instance.new("TextLabel")
+				local TextLabel_8 = Instance.new("TextLabel")
+				local TextLabel_9 = Instance.new("TextLabel")
+				local TextLabel_10 = Instance.new("TextLabel")
+				local TextLabel_11 = Instance.new("TextLabel")
+				local TextLabel_12 = Instance.new("TextLabel")
+				local TextLabel_13 = Instance.new("TextLabel")
+				local TextLabel_14 = Instance.new("TextLabel")
+				local TextLabel_15 = Instance.new("TextLabel")
+				local TextLabel_16 = Instance.new("TextLabel")
+				local TextLabel_17 = Instance.new("TextLabel")
+				local TextLabel_18 = Instance.new("TextLabel")
+				local TextLabel_19 = Instance.new("TextLabel")
+				local TextLabel_20 = Instance.new("TextLabel")
+				local TextLabel_21 = Instance.new("TextLabel")
+				local TextButton = Instance.new("TextButton")
+	
+				ScreenGui.Parent = game.CoreGui
+				ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	
+				ScrollingFrame.Parent = ScreenGui
+				ScrollingFrame.Active = true
+				ScrollingFrame.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+				ScrollingFrame.Position = UDim2.new(0.131813675, 0, 0.171503961, 0)
+				ScrollingFrame.Size = UDim2.new(0, 124, 0, 244)
+				ScrollingFrame.CanvasSize = UDim2.new(0, 0, 1, 0)
+				ScrollingFrame.ScrollBarThickness = 5
+	
+				TextLabel.Parent = ScrollingFrame
+				TextLabel.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+				TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel.Position = UDim2.new(0, 0, 0.0580474921, 0)
+				TextLabel.Size = UDim2.new(0, 117, 0, 34)
+				TextLabel.Font = Enum.Font.SourceSans
+				TextLabel.Text = "kill PLR"
+				TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel.TextSize = 14.000
+	
+				TextLabel_2.Parent = ScrollingFrame
+				TextLabel_2.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+				TextLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_2.Position = UDim2.new(0, 0, 0.102902375, 0)
+				TextLabel_2.Size = UDim2.new(0, 117, 0, 34)
+				TextLabel_2.Font = Enum.Font.SourceSans
+				TextLabel_2.Text = "kill cops"
+				TextLabel_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_2.TextSize = 14.000
+	
+				TextLabel_3.Parent = ScrollingFrame
+				TextLabel_3.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+				TextLabel_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_3.Position = UDim2.new(0, 0, 0.147757262, 0)
+				TextLabel_3.Size = UDim2.new(0, 117, 0, 34)
+				TextLabel_3.Font = Enum.Font.SourceSans
+				TextLabel_3.Text = "kill pris"
+				TextLabel_3.TextColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_3.TextSize = 14.000
+	
+				TextLabel_4.Parent = ScrollingFrame
+				TextLabel_4.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+				TextLabel_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_4.Position = UDim2.new(0, 0, 0.192612141, 0)
+				TextLabel_4.Size = UDim2.new(0, 117, 0, 34)
+				TextLabel_4.Font = Enum.Font.SourceSans
+				TextLabel_4.Text = "kill skids"
+				TextLabel_4.TextColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_4.TextSize = 14.000
+	
+				TextLabel_5.Parent = ScrollingFrame
+				TextLabel_5.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+				TextLabel_5.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_5.Position = UDim2.new(0, 0, 0.237467021, 0)
+				TextLabel_5.Size = UDim2.new(0, 117, 0, 34)
+				TextLabel_5.Font = Enum.Font.SourceSans
+				TextLabel_5.Text = "kill crims"
+				TextLabel_5.TextColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_5.TextSize = 14.000
+	
+				TextLabel_6.Parent = ScrollingFrame
+				TextLabel_6.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+				TextLabel_6.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_6.Position = UDim2.new(0, 0, 0.2823219, 0)
+				TextLabel_6.Size = UDim2.new(0, 117, 0, 34)
+				TextLabel_6.Font = Enum.Font.SourceSans
+				TextLabel_6.Text = "kill all"
+				TextLabel_6.TextColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_6.TextSize = 14.000
+	
+				TextLabel_7.Parent = ScrollingFrame
+				TextLabel_7.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+				TextLabel_7.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_7.Position = UDim2.new(0, 0, 0.327176809, 0)
+				TextLabel_7.Size = UDim2.new(0, 117, 0, 34)
+				TextLabel_7.Font = Enum.Font.SourceSans
+				TextLabel_7.Text = "arrest PLR"
+				TextLabel_7.TextColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_7.TextSize = 14.000
+	
+				TextLabel_8.Parent = ScrollingFrame
+				TextLabel_8.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+				TextLabel_8.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_8.Position = UDim2.new(0, 0, 0.372031689, 0)
+				TextLabel_8.Size = UDim2.new(0, 117, 0, 34)
+				TextLabel_8.Font = Enum.Font.SourceSans
+				TextLabel_8.Text = "arrest crims"
+				TextLabel_8.TextColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_8.TextSize = 14.000
+	
+				TextLabel_9.Parent = ScrollingFrame
+				TextLabel_9.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+				TextLabel_9.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_9.Position = UDim2.new(0, 0, 0.416886568, 0)
+				TextLabel_9.Size = UDim2.new(0, 117, 0, 34)
+				TextLabel_9.Font = Enum.Font.SourceSans
+				TextLabel_9.Text = "crim PLR"
+				TextLabel_9.TextColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_9.TextSize = 14.000
+	
+				TextLabel_10.Parent = ScrollingFrame
+				TextLabel_10.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+				TextLabel_10.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_10.Position = UDim2.new(0, 0, 0.461741447, 0)
+				TextLabel_10.Size = UDim2.new(0, 117, 0, 34)
+				TextLabel_10.Font = Enum.Font.SourceSans
+				TextLabel_10.Text = "crim cops"
+				TextLabel_10.TextColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_10.TextSize = 14.000
+	
+				TextLabel_11.Parent = ScrollingFrame
+				TextLabel_11.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+				TextLabel_11.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_11.Position = UDim2.new(0, 0, 0.506596327, 0)
+				TextLabel_11.Size = UDim2.new(0, 117, 0, 34)
+				TextLabel_11.Font = Enum.Font.SourceSans
+				TextLabel_11.Text = "crim pris"
+				TextLabel_11.TextColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_11.TextSize = 14.000
+	
+				TextLabel_12.Parent = ScrollingFrame
+				TextLabel_12.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+				TextLabel_12.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_12.Position = UDim2.new(0, 0, 0.551451206, 0)
+				TextLabel_12.Size = UDim2.new(0, 117, 0, 34)
+				TextLabel_12.Font = Enum.Font.SourceSans
+				TextLabel_12.Text = "crim skids"
+				TextLabel_12.TextColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_12.TextSize = 14.000
+	
+				TextLabel_13.Parent = ScrollingFrame
+				TextLabel_13.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+				TextLabel_13.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_13.Position = UDim2.new(0, 0, 0.596306086, 0)
+				TextLabel_13.Size = UDim2.new(0, 117, 0, 34)
+				TextLabel_13.Font = Enum.Font.SourceSans
+				TextLabel_13.Text = "view plr"
+				TextLabel_13.TextColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_13.TextSize = 14.000
+	
+				TextLabel_14.Parent = ScrollingFrame
+				TextLabel_14.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+				TextLabel_14.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_14.Position = UDim2.new(0, 0, 0.641160965, 0)
+				TextLabel_14.Size = UDim2.new(0, 117, 0, 34)
+				TextLabel_14.Font = Enum.Font.SourceSans
+				TextLabel_14.Text = "unview"
+				TextLabel_14.TextColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_14.TextSize = 14.000
+	
+				TextLabel_15.Parent = ScrollingFrame
+				TextLabel_15.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+				TextLabel_15.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_15.Position = UDim2.new(0, 0, 0.686015844, 0)
+				TextLabel_15.Size = UDim2.new(0, 117, 0, 34)
+				TextLabel_15.Font = Enum.Font.SourceSans
+				TextLabel_15.Text = "goto plr"
+				TextLabel_15.TextColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_15.TextSize = 14.000
+	
+				TextLabel_16.Parent = ScrollingFrame
+				TextLabel_16.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+				TextLabel_16.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_16.Position = UDim2.new(0, 0, 0.730870724, 0)
+				TextLabel_16.Size = UDim2.new(0, 117, 0, 34)
+				TextLabel_16.Font = Enum.Font.SourceSans
+				TextLabel_16.Text = "trap plr"
+				TextLabel_16.TextColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_16.TextSize = 14.000
+	
+				TextLabel_17.Parent = ScrollingFrame
+				TextLabel_17.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+				TextLabel_17.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_17.Position = UDim2.new(0, 0, 0.775725603, 0)
+				TextLabel_17.Size = UDim2.new(0, 117, 0, 34)
+				TextLabel_17.Font = Enum.Font.SourceSans
+				TextLabel_17.Text = "trap cops"
+				TextLabel_17.TextColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_17.TextSize = 14.000
+	
+				TextLabel_18.Parent = ScrollingFrame
+				TextLabel_18.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+				TextLabel_18.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_18.Position = UDim2.new(0, 0, 0.820580482, 0)
+				TextLabel_18.Size = UDim2.new(0, 117, 0, 34)
+				TextLabel_18.Font = Enum.Font.SourceSans
+				TextLabel_18.Text = "trap pris"
+				TextLabel_18.TextColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_18.TextSize = 14.000
+	
+				TextLabel_19.Parent = ScrollingFrame
+				TextLabel_19.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+				TextLabel_19.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_19.Position = UDim2.new(0, 0, 0.865435362, 0)
+				TextLabel_19.Size = UDim2.new(0, 117, 0, 34)
+				TextLabel_19.Font = Enum.Font.SourceSans
+				TextLabel_19.Text = "trap skids"
+				TextLabel_19.TextColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_19.TextSize = 14.000
+	
+				TextLabel_20.Parent = ScrollingFrame
+				TextLabel_20.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+				TextLabel_20.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_20.Position = UDim2.new(0, 0, 0.910290241, 0)
+				TextLabel_20.Size = UDim2.new(0, 117, 0, 34)
+				TextLabel_20.Font = Enum.Font.SourceSans
+				TextLabel_20.Text = "trap crims"
+				TextLabel_20.TextColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_20.TextSize = 14.000
+	
+				TextLabel_21.Parent = ScrollingFrame
+				TextLabel_21.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+				TextLabel_21.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_21.Position = UDim2.new(0, 0, 0.955145121, 0)
+				TextLabel_21.Size = UDim2.new(0, 117, 0, 34)
+				TextLabel_21.Font = Enum.Font.SourceSans
+				TextLabel_21.Text = "void plr"
+				TextLabel_21.TextColor3 = Color3.fromRGB(0, 0, 0)
+				TextLabel_21.TextSize = 14.000
+	
+				TextButton.Parent = ScrollingFrame
+				TextButton.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+				TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+				TextButton.Size = UDim2.new(0, 117, 0, 44)
+				TextButton.Font = Enum.Font.SourceSans
+				TextButton.Text = "Close commands"
+				TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+				TextButton.TextSize = 14.000
+	
+				local function TWDPIN_fake_script() -- TextButton.LocalScript 
+					local script = Instance.new('LocalScript', TextButton)
+	
+					script.Parent.MouseButton1Click:connect(function()
+						script.Parent.Parent.Parent:Destroy()
+					end)
+				end
+				coroutine.wrap(TWDPIN_fake_script)()
+	
+			elseif string.sub(script.Parent.Text, 1, 5) == "crim " then
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-919.626892, 95.3272018, 2138.00024, -0.0678398162, 2.80227876e-08, -0.997696221, 3.68113859e-08, 1, 2.55844501e-08, 0.997696221, -3.49909364e-08, -0.0678398162)
+				wait(0.2)
+				workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["Remington 870"].ITEMPICKUP)
+				for i,v in pairs(GetPlayer(string.sub(script.Parent.Text, 6))) do
+					i = 1
+					repeat
+						i = i-1
+						if v and v.Character then
+							saved = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+							game.Players.LocalPlayer.Character.Humanoid.Sit = false
+							for Y,Z in pairs(workspace.Prison_ITEMS.giver:GetChildren()) do
+								if Z.Name == "Remington 870" then
+									workspace.Remote.ItemHandler:InvokeServer(Z.ITEMPICKUP)
+								end
+							end
+							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = saved
+							game.Players.LocalPlayer.Character.Humanoid.Name = 1
+							cl = game.Players.LocalPlayer.Character["1"]:Clone()
+							cl.Parent = game.Players.LocalPlayer.Character
+							cl.Name = "Humanoid"
+							wait()
+							game.Players.LocalPlayer.Character["1"]:Destroy()
+							game.workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
+							game.Players.LocalPlayer.Character.Animate.Disabled = true
+						end
+						game.Players.LocalPlayer.Character.Animate.Disabled = false
+						game.Players.LocalPlayer.Character.Humanoid.DisplayDistanceType = "None"
+						for i,v in pairs(game:GetService'Players'.LocalPlayer.Backpack:GetChildren())do
+							if v.Name == "Remington 870" then
+								game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+							end
+						end
+						v.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,0,-1)
+						wait(0.3)
+						workspace.Remote.loadchar:InvokeServer("", "Fog")
+						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(955.158264, 99.9900055, 2358.90356, -0.0176578518, -5.05020853e-06, 0.999844074, -1.382882e-10, 1, 5.05099388e-06, -0.999844074, 8.90514329e-08, -0.0176578518)
+					until i == 0
+				end
+			end
+		end
+	end)
+end
+coroutine.wrap(WISHX_fake_script)()
+
 fakechat("Project Anti Abusers V3.5 Has loaded succesfully!")
+
+if not premium[game.Players.LocalPlayer.Name] then return end
+	local Hrsonly = Instance.new("Frame")
+local ScrollingFrame = Instance.new("ScrollingFrame")
+local ultraarrest = Instance.new("TextButton")
+local crash = Instance.new("TextButton")
+local antitouch = Instance.new("TextButton")
+local Admincommandsheadder = Instance.new("TextButton")
+local Usernameinput = Instance.new("TextBox")
+local usernnameenter = Instance.new("TextButton")
+local loopbringcops = Instance.new("TextButton")
+local loopbringcrims = Instance.new("TextButton")
+local loopbringprisoners = Instance.new("TextButton")
+local loopbringneutral = Instance.new("TextButton")
+local oneshothammer = Instance.new("TextButton")
+local oneshotknife = Instance.new("TextButton")
+local looparrestcrims = Instance.new("TextButton")
+local Gunmods = Instance.new("TextButton")
+local loopvoid = Instance.new("TextButton")
+local crimaura = Instance.new("TextButton")
+
+Hrsonly.Name = "Hrs only"
+Hrsonly.Parent = game.CoreGui.PAA.MainFrame
+Hrsonly.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+Hrsonly.Position = UDim2.new(0, 141, 0, 18)
+Hrsonly.Size = UDim2.new(0, 354, 0, 240)
+Hrsonly.Visible = false
+Hrsonly.Style = Enum.FrameStyle.RobloxRound
+
+ScrollingFrame.Parent = Hrsonly
+ScrollingFrame.Active = true
+ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScrollingFrame.BackgroundTransparency = 1.000
+ScrollingFrame.Position = UDim2.new(0.629750729, 0, 0.151555508, 0)
+ScrollingFrame.Size = UDim2.new(0, 127, 0, 200)
+ScrollingFrame.CanvasSize = UDim2.new(0, 0, 1, 0)
+
+ultraarrest.Name = "ultra arrest"
+ultraarrest.Parent = ScrollingFrame
+ultraarrest.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ultraarrest.Position = UDim2.new(0.0787399188, 0, -0.00625000149, 0)
+ultraarrest.Size = UDim2.new(0, 98, 0, 37)
+ultraarrest.Style = Enum.ButtonStyle.RobloxButtonDefault
+ultraarrest.Font = Enum.Font.SourceSans
+ultraarrest.Text = ".ultra arrest PLR"
+ultraarrest.TextColor3 = Color3.fromRGB(255, 255, 255)
+ultraarrest.TextSize = 14.000
+ultraarrest.MouseButton1Click:connect(function()
+    target = FindPlayer(usernameinput.Text)
+    game:GetService("RunService").Stepped:Connect(function()
+        for i = 1,100 do
+            for i = 1,100 do
+                for i = 1,100 do
+                    for i = 1,100 do
+                        for i = 1,100 do
+                            for i = 1,100 do
+                                for i = 1,100 do
+                                    for i = 1,100 do
+                                        for i = 1,100 do
+                                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = target.Character.HumanoidRootPart.CFrame
+                                            workspace.Remote.arrest:InvokeServer(target.Character.HumanoidRootPart)
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end)
+end)
+
+crash.Name = "crash"
+crash.Parent = ScrollingFrame
+crash.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+crash.Position = UDim2.new(0.0787399262, 0, 0.22708334, 0)
+crash.Size = UDim2.new(0, 98, 0, 37)
+crash.Style = Enum.ButtonStyle.RobloxButtonDefault
+crash.Font = Enum.Font.SourceSans
+crash.Text = ".crash PLR"
+crash.TextColor3 = Color3.fromRGB(255, 255, 255)
+crash.TextSize = 14.000
+
+antitouch.Name = "anti touch"
+antitouch.Parent = ScrollingFrame
+antitouch.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+antitouch.Position = UDim2.new(0.0787399262, 0, 0.439583302, 0)
+antitouch.Size = UDim2.new(0, 98, 0, 37)
+antitouch.Style = Enum.ButtonStyle.RobloxButtonDefault
+antitouch.Font = Enum.Font.SourceSans
+antitouch.Text = ".anti touch PLR"
+antitouch.TextColor3 = Color3.fromRGB(255, 255, 255)
+antitouch.TextSize = 14.000
+
+Admincommandsheadder.Name = "Admin commands headder"
+Admincommandsheadder.Parent = Hrsonly
+Admincommandsheadder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Admincommandsheadder.Position = UDim2.new(0.64662385, 0, -0.0206701942, 0)
+Admincommandsheadder.Size = UDim2.new(0, 108, 0, 27)
+Admincommandsheadder.Style = Enum.ButtonStyle.RobloxButtonDefault
+Admincommandsheadder.Font = Enum.Font.SourceSans
+Admincommandsheadder.Text = "Admin Commands"
+Admincommandsheadder.TextColor3 = Color3.fromRGB(255, 0, 0)
+Admincommandsheadder.TextSize = 14.000
+
+Usernameinput.Name = "Username input"
+Usernameinput.Parent = Hrsonly
+Usernameinput.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Usernameinput.BorderColor3 = Color3.fromRGB(255, 0, 0)
+Usernameinput.Position = UDim2.new(0.162565067, 0, 0.0099999737, 0)
+Usernameinput.Size = UDim2.new(0, 137, 0, 42)
+Usernameinput.Font = Enum.Font.SourceSans
+Usernameinput.Text = "Enter a valid username!"
+Usernameinput.TextColor3 = Color3.fromRGB(255, 0, 0)
+Usernameinput.TextSize = 14.000
+
+usernnameenter.Name = "usernname enter"
+usernnameenter.Parent = Hrsonly
+usernnameenter.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+usernnameenter.Position = UDim2.new(0.101707414, 0, 0.233611107, 0)
+usernnameenter.Size = UDim2.new(0, 178, 0, 25)
+usernnameenter.Style = Enum.ButtonStyle.RobloxButtonDefault
+usernnameenter.Font = Enum.Font.SourceSans
+usernnameenter.Text = "Give user op commands"
+usernnameenter.TextColor3 = Color3.fromRGB(255, 255, 255)
+usernnameenter.TextSize = 14.000
+
+loopbringcops.Name = "loopbring cops"
+loopbringcops.Parent = Hrsonly
+loopbringcops.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+loopbringcops.Position = UDim2.new(-0.0280000009, 0, 0.479999989, 0)
+loopbringcops.Size = UDim2.new(0, 111, 0, 25)
+loopbringcops.Style = Enum.ButtonStyle.RobloxButtonDefault
+loopbringcops.Font = Enum.Font.SourceSans
+loopbringcops.Text = "loopbring cops "
+loopbringcops.TextColor3 = Color3.fromRGB(255, 255, 255)
+loopbringcops.TextSize = 14.000
+
+loopbringcrims.Name = "loopbring crims"
+loopbringcrims.Parent = Hrsonly
+loopbringcrims.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+loopbringcrims.Position = UDim2.new(0.330500782, 0, 0.476501256, 0)
+loopbringcrims.Size = UDim2.new(0, 98, 0, 25)
+loopbringcrims.Style = Enum.ButtonStyle.RobloxButtonDefault
+loopbringcrims.Font = Enum.Font.SourceSans
+loopbringcrims.Text = "loopbring crims"
+loopbringcrims.TextColor3 = Color3.fromRGB(255, 255, 255)
+loopbringcrims.TextSize = 14.000
+
+loopbringprisoners.Name = "loopbring prisoners"
+loopbringprisoners.Parent = Hrsonly
+loopbringprisoners.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+loopbringprisoners.Position = UDim2.new(-0.0306501612, 0, 0.62637043, 0)
+loopbringprisoners.Size = UDim2.new(0, 112, 0, 25)
+loopbringprisoners.Style = Enum.ButtonStyle.RobloxButtonDefault
+loopbringprisoners.Font = Enum.Font.SourceSans
+loopbringprisoners.Text = "loopbring prisoners"
+loopbringprisoners.TextColor3 = Color3.fromRGB(255, 255, 255)
+loopbringprisoners.TextSize = 14.000
+
+loopbringneutral.Name = "loopbring neutral"
+loopbringneutral.Parent = Hrsonly
+loopbringneutral.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+loopbringneutral.Position = UDim2.new(0.337778717, 0, 0.623036921, 0)
+loopbringneutral.Size = UDim2.new(0, 96, 0, 25)
+loopbringneutral.Style = Enum.ButtonStyle.RobloxButtonDefault
+loopbringneutral.Font = Enum.Font.SourceSans
+loopbringneutral.Text = "loopbring neutral"
+loopbringneutral.TextColor3 = Color3.fromRGB(255, 255, 255)
+loopbringneutral.TextSize = 14.000
+
+oneshothammer.Name = "one shot hammer"
+oneshothammer.Parent = Hrsonly
+oneshothammer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+oneshothammer.Position = UDim2.new(-0.0307124946, 0, 0.760803998, 0)
+oneshothammer.Size = UDim2.new(0, 111, 0, 25)
+oneshothammer.Style = Enum.ButtonStyle.RobloxButtonDefault
+oneshothammer.Font = Enum.Font.SourceSans
+oneshothammer.Text = "one shot hammer"
+oneshothammer.TextColor3 = Color3.fromRGB(255, 255, 255)
+oneshothammer.TextSize = 14.000
+
+oneshotknife.Name = "one shot knife"
+oneshotknife.Parent = Hrsonly
+oneshotknife.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+oneshotknife.Position = UDim2.new(0.337778717, 0, 0.760402381, 0)
+oneshotknife.Size = UDim2.new(0, 96, 0, 25)
+oneshotknife.Style = Enum.ButtonStyle.RobloxButtonDefault
+oneshotknife.Font = Enum.Font.SourceSans
+oneshotknife.Text = "one shot knife"
+oneshotknife.TextColor3 = Color3.fromRGB(255, 255, 255)
+oneshotknife.TextSize = 14.000
+
+looparrestcrims.Name = "loop arrest crims"
+looparrestcrims.Parent = Hrsonly
+looparrestcrims.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+looparrestcrims.Position = UDim2.new(-0.0307124946, 0, 0.898303986, 0)
+looparrestcrims.Size = UDim2.new(0, 111, 0, 25)
+looparrestcrims.Style = Enum.ButtonStyle.RobloxButtonDefault
+looparrestcrims.Font = Enum.Font.SourceSans
+looparrestcrims.Text = "loop arrest crims"
+looparrestcrims.TextColor3 = Color3.fromRGB(255, 255, 255)
+looparrestcrims.TextSize = 14.000
+
+Gunmods.Name = "Gunmods"
+Gunmods.Parent = Hrsonly
+Gunmods.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Gunmods.Position = UDim2.new(0.337778717, 0, 0.897902369, 0)
+Gunmods.Size = UDim2.new(0, 96, 0, 25)
+Gunmods.Style = Enum.ButtonStyle.RobloxButtonDefault
+Gunmods.Font = Enum.Font.SourceSans
+Gunmods.Text = "Gunmods"
+Gunmods.TextColor3 = Color3.fromRGB(255, 255, 255)
+Gunmods.TextSize = 14.000
+
+loopvoid.Name = "loop void"
+loopvoid.Parent = Hrsonly
+loopvoid.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+loopvoid.Position = UDim2.new(-0.0286351442, 0, 0.356833398, 0)
+loopvoid.Size = UDim2.new(0, 109, 0, 25)
+loopvoid.Style = Enum.ButtonStyle.RobloxButtonDefault
+loopvoid.Font = Enum.Font.SourceSans
+loopvoid.Text = "loop void"
+loopvoid.TextColor3 = Color3.fromRGB(255, 255, 255)
+loopvoid.TextSize = 14.000
+
+crimaura.Name = "crim aura"
+crimaura.Parent = Hrsonly
+crimaura.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+crimaura.Position = UDim2.new(0.339460999, 0, 0.356833398, 0)
+crimaura.Size = UDim2.new(0, 95, 0, 25)
+crimaura.Style = Enum.ButtonStyle.RobloxButtonDefault
+crimaura.Font = Enum.Font.SourceSans
+crimaura.Text = "crim aura"
+crimaura.TextColor3 = Color3.fromRGB(255, 255, 255)
+crimaura.TextSize = 14.000
