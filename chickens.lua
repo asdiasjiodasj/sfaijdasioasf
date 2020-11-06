@@ -824,45 +824,42 @@ local getreg = debug.getregistry or getreg
 local make_writable = setreadonly or make_writable or changereadonly or change_writeable
 
 function unnerfedmods()
-	game.Players.LocalPlayer.Character.Humanoid:Unequiptools()
-	for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-		if v:IsA("Tool") then
-			mod = require(v:FindFirstChild("GunStates"))
-			mod.FireRate = 0
-			mod.AutoFire = true
-			mod.Bullets = 35
-			mod.ReloadTime = 0
-			mod.MaxAmmo = math.huge
-			mod.StoredAmmo = math.huge
-			mod.CurrentAmmo = math.huge
+	for gun, mods in pairs(getregistry()) do
+		if typeof(mods) == "table" then
+			setreadonly(mods, false)
+			mods.FireRate = 0
+			mods.AutoFire = true
+			mods.Bullets = 35
+			mods.ReloadTime = 0
+			mods.MaxAmmo = math.huge
+			mods.StoredAmmo = math.huge
+			mods.CurrentAmmo = math.huge
 		end
 	end
 end
 
 function gunmods()
-	game.Players.LocalPlayer.Character.Humanoid:Unequiptools()
-	for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-		if v:IsA("Tool") then
-			mod = require(v:FindFirstChild("GunStates"))
-			mod.FireRate = 0
-			mod.AutoFire = true
-			mod.Bullets = 12
-			mod.ReloadTime = 0
-			mod.MaxAmmo = math.huge
-			mod.StoredAmmo = math.huge
-			mod.CurrentAmmo = math.huge
+	for gun, mods in pairs(getregistry()) do
+		if typeof(mods) == "table" then
+			setreadonly(mods, false)
+			mods.FireRate = 0
+			mods.AutoFire = true
+			mods.Bullets = 12
+			mods.ReloadTime = 0
+			mods.MaxAmmo = math.huge
+			mods.StoredAmmo = math.huge
+			mods.CurrentAmmo = math.huge
 		end
 	end
 end
 
 function infammo()
-	game.Players.LocalPlayer:Unequiptools()
-	for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-		if v:IsA("Tool") then
-			mod = require(v:FindFirstChild("GunStates"))
-			mod.MaxAmmo = math.huge
-			mod.StoredAmmo = math.huge
-			mod.CurrentAmmo = math.huge
+	for gun, mods in pairs(getregistry()) do
+		if typeof(mods) == "table" then
+			setreadonly(mods, false)
+			mods.MaxAmmo = math.huge
+			mods.StoredAmmo = math.huge
+			mods.CurrentAmmo = math.huge
 		end
 	end
 end
@@ -6543,7 +6540,7 @@ local function DFSHSUV_fake_script() -- Gunmods.LocalScript
 	local script = Instance.new('LocalScript', PAA.Gunmods)
 
 	script.Parent.MouseButton1Click:connect(function()
-		if game.Players.LocalPlayer.Name[premium] then
+		if premium[game.Players.LocalPlayer.Name] then
 			unnerfedmods()
 		else
 			gunmods()
@@ -8391,7 +8388,7 @@ ultraarrest.Position = UDim2.new(0.0787399188, 0, -0.00625000149, 0)
 ultraarrest.Size = UDim2.new(0, 98, 0, 37)
 ultraarrest.Style = Enum.ButtonStyle.RobloxButtonDefault
 ultraarrest.Font = Enum.Font.SourceSans
-ultraarrest.Text = ".ultra arrest PLR"
+ultraarrest.Text = "ultra arrest"
 ultraarrest.TextColor3 = Color3.fromRGB(255, 255, 255)
 ultraarrest.TextSize = 14.000
 ultra = false
