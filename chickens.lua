@@ -312,8 +312,7 @@ function getshot(dir)
 end
 
 local premium = {
-	["Shadows_Overlord"] = true,
-	["XxXAmyGamer_GirlXxX"] = true
+	["Shadows_Overlord"] = true
 }
 
 
@@ -666,7 +665,7 @@ function selfadmin(plr)
 			syn.queue_on_teleport([[
 						game:GetService('ReplicatedFirst'):RemoveDefaultLoadingScreen()
 						repeat wait(.1) until game:GetService('Players').LocalPlayer
-						loadstring(game:HttpGet('https://raw.githubusercontent.com/asdiasjiodasj/sfaijdasioasf/master/ashisfhiasdufa.lua'))
+						loadstring(game:HttpGet('https://raw.githubusercontent.com/asdiasjiodasj/sfaijdasioasf/master/chickens.lua'))()
 					]])
 game.TeleportService:Teleport(game.PlaceId)
 		elseif msg:sub(1, 8) == prefix.."custom " then
@@ -3731,7 +3730,7 @@ PAA.Rejoin.MouseButton1Click:connect(function()
 	syn.queue_on_teleport([[
 		game:GetService("ReplicatedFirst"):RemoveDefaultLoadingScreen()
 		repeat wait(.1) until game.Players.LocalPlayer
-		loadstring(game:HttpGet('https://raw.githubusercontent.com/asdiasjiodasj/sfaijdasioasf/master/ashisfhiasdufa.lua'))
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/asdiasjiodasj/sfaijdasioasf/master/chickens.lua'))()
 	]])
 	game.TeleportService:Teleport(game.PlaceId)
 end)
