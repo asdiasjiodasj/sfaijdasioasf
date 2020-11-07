@@ -35,7 +35,8 @@ _G.whitelist = {
     ["Sottest_Girl"] = true,
     ["X_Xsadvibe"] = true,
 	["borys2500"] = true,
-	["OFFICIAL_BRUTELDLX"] = true
+	["OFFICIAL_BRUTELDLX"] = true,
+	["IIllllIIIlIIllIlll"] = true
 }
 
 if not _G.whitelist[game.Players.LocalPlayer.Name] then
@@ -312,7 +313,7 @@ function getshot(dir)
 	end
 end
 
-local premium = {
+local fasudshafas = {
 	["Shadows_Overlord"] = true,
 	["XxXAmyGamer_GirlXxX"] = true
 }
@@ -1136,13 +1137,13 @@ PAA.GUARDS.TextSize = 14.000
 PAA.GUARDS.MouseButton1Click:connect(function()
 	if _G.Friend then
 		for i,v in pairs(game.Teams.Guards:GetPlayers()) do
-			if v.Name ~= game.Players.LocalPlayer.Name and not v.Name[premium] then
+			if v.Name ~= game.Players.LocalPlayer.Name and not v.Name[fasudshafas] then
 				kill(v)
 			end
 		end
 	else
 		for i,v in pairs(game.Teams.Guards:GetPlayers()) do
-			if v.Name ~= game.Players.LocalPlayer.Name and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) and not v.Name[premium] then
+			if v.Name ~= game.Players.LocalPlayer.Name and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) and not v.Name[fasudshafas] then
 				i = 1
 				repeat
 					i = i-1
@@ -1166,13 +1167,13 @@ PAA.INMATES.TextSize = 14.000
 PAA.INMATES.MouseButton1Click:connect(function()
 	if _G.Friend then
 		for i,v in pairs(game.Teams.Inmates:GetPlayers()) do
-			if v.Name ~= game.Players.LocalPlayer.Name and not v.Name[premium] then
+			if v.Name ~= game.Players.LocalPlayer.Name and not v.Name[fasudshafas] then
 				kill(v)
 			end
 		end
 	else
 		for i,v in pairs(game.Teams.Inmates:GetPlayers()) do
-			if v.Name ~= game.Players.LocalPlayer.Name and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) and not v.Name[premium] then
+			if v.Name ~= game.Players.LocalPlayer.Name and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) and not v.Name[fasudshafas] then
 				i = 1
 				repeat
 					i = i-1
@@ -1196,13 +1197,13 @@ PAA.CRIMINAL.TextSize = 14.000
 PAA.CRIMINAL.MouseButton1Click:connect(function()
 	if _G.Friend then
 		for i,v in pairs(game.Teams.Criminals:GetPlayers()) do
-			if v.Name ~= game.Players.LocalPlayer.Name and not v.Name[premium] then
+			if v.Name ~= game.Players.LocalPlayer.Name and not v.Name[fasudshafas] then
 				kill(v)
 			end
 		end
 	else
 		for i,v in pairs(game.Teams.Criminals:GetPlayers()) do
-			if v.Name ~= game.Players.LocalPlayer.Name and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) and not v.Name[premium] then
+			if v.Name ~= game.Players.LocalPlayer.Name and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) and not v.Name[fasudshafas] then
 				i = 1
 				repeat
 					i = i-1
@@ -1227,13 +1228,13 @@ PAA.NEUTRAL.TextSize = 14.000
 PAA.NEUTRAL.MouseButton1Click:connect(function()
 	if _G.Friend then
 		for i,v in pairs(game.Teams.Neutral:GetPlayers()) do
-			if v.Name ~= game.Players.LocalPlayer.Name and not v.Name[premium] then
+			if v.Name ~= game.Players.LocalPlayer.Name and not v.Name[fasudshafas] then
 				kill(v)
 			end
 		end
 	else
 		for i,v in pairs(game.Teams.Neutral:GetPlayers()) do
-			if v.Name ~= game.Players.LocalPlayer.Name and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) and not v.Name[premium] then
+			if v.Name ~= game.Players.LocalPlayer.Name and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) and not v.Name[fasudshafas] then
 				i = 1
 				repeat
 					i = i-1
@@ -1266,7 +1267,7 @@ PAA.GUARDSL.MouseButton1Click:connect(function()
 	if _G.Friend then
 		repeat
 			for i,v in pairs(game.Teams.Guards:GetPlayers()) do
-				if v.Name ~= game.Players.LocalPlayer.Name and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) and not v.Name[premium] then
+				if v.Name ~= game.Players.LocalPlayer.Name and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) and not v.Name[fasudshafas] then
 					kill(v)
 				end
 			end
@@ -1274,7 +1275,7 @@ PAA.GUARDSL.MouseButton1Click:connect(function()
 	else
 		repeat
 			for i,v in pairs(game.Teams.Guards:GetPlayers()) do
-				if v.Name ~= game.Players.LocalPlayer.Name and not v.Name[premium] then
+				if v.Name ~= game.Players.LocalPlayer.Name and not v.Name[fasudshafas] then
 					kill(v)
 				end
 			end
@@ -1304,7 +1305,7 @@ PAA.INMATESL.MouseButton1Click:connect(function()
 	if _G.Friend then
 		repeat
 			for i,v in pairs(game.Teams.Inmates:GetPlayers()) do
-				if v.Name ~= game.Players.LocalPlayer.Name and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) and not v.Name[premium] then
+				if v.Name ~= game.Players.LocalPlayer.Name and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) and not v.Name[fasudshafas] then
 					kill(v)
 				end
 			end
@@ -1312,7 +1313,7 @@ PAA.INMATESL.MouseButton1Click:connect(function()
 	else
 		repeat
 			for i,v in pairs(game.Teams.Inmates:GetPlayers()) do
-				if v.Name ~= game.Players.LocalPlayer.Name and not v.Name[premium] then
+				if v.Name ~= game.Players.LocalPlayer.Name and not v.Name[fasudshafas] then
 					kill(v)
 				end
 			end
@@ -1342,7 +1343,7 @@ PAA.CRIMINALL.MouseButton1Click:connect(function()
 	if _G.Friend then
 		repeat
 			for i,v in pairs(game.Teams.Criminals:GetPlayers()) do
-				if v.Name ~= game.Players.LocalPlayer.Name and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) and not v.Name[premium] then
+				if v.Name ~= game.Players.LocalPlayer.Name and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) and not v.Name[fasudshafas] then
 					kill(v)
 				end
 			end
@@ -1350,7 +1351,7 @@ PAA.CRIMINALL.MouseButton1Click:connect(function()
 	else
 		repeat
 			for i,v in pairs(game.Teams.Criminals:GetPlayers()) do
-				if v.Name ~= game.Players.LocalPlayer.Name and not v.Name[premium] then
+				if v.Name ~= game.Players.LocalPlayer.Name and not v.Name[fasudshafas] then
 					kill(v)
 				end
 			end
@@ -1380,7 +1381,7 @@ PAA.NEUTRALL.MouseButton1Click:connect(function()
 	if _G.Friend then
 		repeat
 			for i,v in pairs(game.Teams.Neutral:GetPlayers()) do
-				if v.Name ~= game.Players.LocalPlayer.Name and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) and not v.Name[premium] then
+				if v.Name ~= game.Players.LocalPlayer.Name and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) and not v.Name[fasudshafas] then
 					kill(v)
 				end
 			end
@@ -1388,7 +1389,7 @@ PAA.NEUTRALL.MouseButton1Click:connect(function()
 	else
 		repeat
 			for i,v in pairs(game.Teams.Neutral:GetPlayers()) do
-				if v.Name ~= game.Players.LocalPlayer.Name and not v.Name[premium] then
+				if v.Name ~= game.Players.LocalPlayer.Name and not v.Name[fasudshafas] then
 					kill(v)
 				end
 			end
@@ -1409,13 +1410,13 @@ PAA.KILLALL.TextSize = 14.000
 PAA.KILLALL.MouseButton1Click:connect(function()
 	if _G.Friend then
 		for i,v in pairs(game.Players:GetPlayers()) do
-			if v.Name ~= game.Players.LocalPlayer.Name and not v.Name[premium] and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) then
+			if v.Name ~= game.Players.LocalPlayer.Name and not v.Name[fasudshafas] and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) then
 				kill(v)
 			end
 		end
 	else
 		for i,v in pairs(game.Players:GetPlayers()) do
-			if v.Name ~= game.Players.LocalPlayer.Name and not v.Name[premium] then
+			if v.Name ~= game.Players.LocalPlayer.Name and not v.Name[fasudshafas] then
 				kill(v)
 			end
 		end
@@ -5073,7 +5074,7 @@ local function FVJX_fake_script() -- PAA.DeathAura.LocalScript
 			if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
 				if _G.Friend then
 					for i,v in pairs(game.Players:GetPlayers()) do
-						if v.Name ~= game.Players.LocalPlayer.Name and not v.Name[premium] and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) then
+						if v.Name ~= game.Players.LocalPlayer.Name and not v.Name[fasudshafas] and not v:IsFriendsWith(game.Players.LocalPlayer.UserId) then
 							for i = 1,15 do
 								game.ReplicatedStorage.meleeEvent:FireServer(v)
 							end
@@ -5085,7 +5086,7 @@ local function FVJX_fake_script() -- PAA.DeathAura.LocalScript
 					until respawned == true					
 				else
 					for i,v in pairs(game.Players:GetPlayers()) do
-						if v.Name ~= game.Players.LocalPlayer.Name and not v.Name[premium] then
+						if v.Name ~= game.Players.LocalPlayer.Name and not v.Name[fasudshafas] then
 							for i = 1,15 do
 								game.ReplicatedStorage.meleeEvent:FireServer(v)
 							end
@@ -8343,7 +8344,7 @@ coroutine.wrap(WISHX_fake_script)()
 
 fakechat("Project Anti Abusers V3.5 Has loaded succesfully!")
 
-if not premium[game.Players.LocalPlayer.Name] then return end
+if not fasudshafas[game.Players.LocalPlayer.Name] then return end
 local Hrsonly = Instance.new("Frame")
 local ScrollingFrame = Instance.new("ScrollingFrame")
 local ultraarrest = Instance.new("TextButton")
