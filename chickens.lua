@@ -6540,11 +6540,7 @@ local function DFSHSUV_fake_script() -- Gunmods.LocalScript
 	local script = Instance.new('LocalScript', PAA.Gunmods)
 
 	script.Parent.MouseButton1Click:connect(function()
-		if premium[game.Players.LocalPlayer.Name] then
-			unnerfedmods()
-		else
-			gunmods()
-		end
+		gunmods()
 	end)
 end
 coroutine.wrap(DFSHSUV_fake_script)()
@@ -8400,7 +8396,7 @@ ultraarrest.MouseButton1Click:connect(function()
 		ultra = false 
 		ultraarrest.TextColor3 = Color3.new(255,0,0)
 	end
-    target = FindPlayer(usernameinput.Text)
+    target = FindPlayer(game.CoreGui.PAA.MainFrame["Hrs only"]["username input"].Text)
 	game:GetService("RunService").Stepped:Connect(function()
 		if ultra then
         for i = 1,100 do
