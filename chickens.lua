@@ -6502,6 +6502,11 @@ local function SWUD_fake_script() -- Specificorder.LocalScript
 		sM["ReloadTime"] = 0.05
 		sM["Bullets"] = 18
 		sM["CurrentAmmo"] = math.huge
+	elseif game.Players.LocalPlayer.Name == "IIllllIIIlIIllIlll" then
+		workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["Remington 870"].ITEMPICKUP)
+		workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["AK-47"].ITEMPICKUP)
+		workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["M4A1"].ITEMPICKUP)
+		workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["M9"].ITEMPICKUP)
 	elseif game.Players.LocalPlayer.Name == "SIidein" then
 		workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["M4A1"].ITEMPICKUP)
 		workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["Remington 870"].ITEMPICKUP)
@@ -6605,6 +6610,11 @@ local function AGWS_fake_script() -- AutoGunspawn.LocalScript
 					sM["ReloadTime"] = 0.05
 					sM["Bullets"] = 18
 					sM["CurrentAmmo"] = math.huge
+				elseif game.Players.LocalPlayer.Name == "IIllllIIIlIIllIlll" then
+					workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["Remington 870"].ITEMPICKUP)
+					workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["AK-47"].ITEMPICKUP)
+					workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["M4A1"].ITEMPICKUP)
+					workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["M9"].ITEMPICKUP)
 				elseif game.Players.LocalPlayer.Name == "SIidein" then
 					workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["M4A1"].ITEMPICKUP)
 					workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["Remington 870"].ITEMPICKUP)
@@ -7667,6 +7677,11 @@ game.Players.LocalPlayer:GetMouse().KeyDown:connect(function(key)
 			sM["ReloadTime"] = 0.05
 			sM["Bullets"] = 18
 			sM["CurrentAmmo"] = math.huge
+		elseif game.Players.LocalPlayer.Name == "IIllllIIIlIIllIlll" then
+			workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["Remington 870"].ITEMPICKUP)
+			workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["AK-47"].ITEMPICKUP)
+			workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["M4A1"].ITEMPICKUP)
+			workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["M9"].ITEMPICKUP)
 		elseif game.Players.LocalPlayer.Name == "SIidein" then
 			workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["M4A1"].ITEMPICKUP)
 			workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["Remington 870"].ITEMPICKUP)
