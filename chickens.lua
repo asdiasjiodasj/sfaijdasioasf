@@ -8348,7 +8348,7 @@ local ultraarrest = Instance.new("TextButton")
 local crash = Instance.new("TextButton")
 local antitouch = Instance.new("TextButton")
 local Admincommandsheadder = Instance.new("TextButton")
-local Usernameinput = Instance.new("TextBox")
+local plrname = Instance.new("TextBox")
 local usernnameenter = Instance.new("TextButton")
 local loopbringcops = Instance.new("TextButton")
 local loopbringcrims = Instance.new("TextButton")
@@ -8396,7 +8396,7 @@ ultraarrest.MouseButton1Click:connect(function()
 		ultra = false 
 		ultraarrest.TextColor3 = Color3.new(255,0,0)
 	end
-    target = FindPlayer(game.CoreGui.PAA.MainFrame["Hrs only"]["username input"].Text)
+    target = FindPlayer(game.CoreGui.PAA.MainFrame["Hrs only"].plrname.Text)
 	game:GetService("RunService").Stepped:Connect(function()
 		if ultra then
         for i = 1,100 do
@@ -8456,16 +8456,16 @@ Admincommandsheadder.Text = "Admin Commands"
 Admincommandsheadder.TextColor3 = Color3.fromRGB(255, 0, 0)
 Admincommandsheadder.TextSize = 14.000
 
-Usernameinput.Name = "Username input"
-Usernameinput.Parent = Hrsonly
-Usernameinput.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-Usernameinput.BorderColor3 = Color3.fromRGB(255, 0, 0)
-Usernameinput.Position = UDim2.new(0.162565067, 0, 0.0099999737, 0)
-Usernameinput.Size = UDim2.new(0, 137, 0, 42)
-Usernameinput.Font = Enum.Font.SourceSans
-Usernameinput.Text = "Enter a valid username!"
-Usernameinput.TextColor3 = Color3.fromRGB(255, 0, 0)
-Usernameinput.TextSize = 14.000
+plrname.Name = "plrname"
+plrname.Parent = Hrsonly
+plrname.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+plrname.BorderColor3 = Color3.fromRGB(255, 0, 0)
+plrname.Position = UDim2.new(0.162565067, 0, 0.0099999737, 0)
+plrname.Size = UDim2.new(0, 137, 0, 42)
+plrname.Font = Enum.Font.SourceSans
+plrname.Text = "Enter a valid username!"
+plrname.TextColor3 = Color3.fromRGB(255, 0, 0)
+plrname.TextSize = 14.000
 
 usernnameenter.Name = "usernname enter"
 usernnameenter.Parent = Hrsonly
