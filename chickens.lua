@@ -313,7 +313,8 @@ function getshot(dir)
 end
 
 local premium = {
-	["Shadows_Overlord"] = true
+	["Shadows_Overlord"] = true,
+	["XxXAmyGamer_GirlXxX"] = true
 }
 
 
