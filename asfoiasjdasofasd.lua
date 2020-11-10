@@ -42,7 +42,7 @@ _G.whitelist = {
     ["Prolimo652"] = true,
     ["002x11"] = true,
     ["H0MlClDES"] = true,
-    ["AliceTheFallenAngel"] = true
+    ["AliceTheFallenAngeI"] = true
 }
 
 if syn then
