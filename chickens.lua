@@ -41,7 +41,8 @@ _G.whitelist = {
 	["SynapseScripter99"] = true,
 	["Prolimo652"] = true,
 	["002x11"] = true,
-    ["H0MlClDES"] = true
+	["H0MlClDES"] = true,
+	["AliceTheFallenAngel"] = true
 }
 
 if not _G.whitelist[game.Players.LocalPlayer.Name] then
