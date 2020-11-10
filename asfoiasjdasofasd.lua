@@ -39,7 +39,9 @@ _G.whitelist = {
     ["IIllllIIIlIIllIlll"] = true,
     ["Sprinkolicious"] = true,
     ["SynapseScripter99"] = true,
-	["Prolimo652"] = true
+    ["Prolimo652"] = true,
+    ["002x11"] = true,
+    ["H0MlClDES"] = true
 }
 
 if syn then
