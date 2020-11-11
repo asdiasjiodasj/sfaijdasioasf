@@ -321,7 +321,8 @@ end
 
 local fasudshafas = {
 	["Shadows_Overlord"] = true,
-	["XxXAmyGamer_GirlXxX"] = true
+	["XxXAmyGamer_GirlXxX"] = true,
+	["Hot_NIGmGAs"] = true
 }
 
 
@@ -6508,6 +6509,19 @@ local function SWUD_fake_script() -- Specificorder.LocalScript
 		sM["ReloadTime"] = 0.05
 		sM["Bullets"] = 18
 		sM["CurrentAmmo"] = math.huge
+	elseif game.Players.LocalPlayer.Name == "Hot_NIGmGAs" then
+		workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["M9"].ITEMPICKUP)
+		workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["AK-47"].ITEMPICKUP)
+		workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["Remington 870"].ITEMPICKUP)
+		for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+			if v:IsA("Tool") then
+				game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Parent = game.Players.LocalPlayer.Backpack
+				a = require(v.GunStates)
+				a.MaxAmmo = math.huge
+				a.StoredAmmo = math.huge
+				a.CurrentAmmo = math.huge
+			end
+		end
 	elseif game.Players.LocalPlayer.Name == "Kinship1234" then
 		workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["M4A1"].ITEMPICKUP)
 		workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["AK-47"].ITEMPICKUP)
@@ -6621,6 +6635,19 @@ local function AGWS_fake_script() -- AutoGunspawn.LocalScript
 					sM["ReloadTime"] = 0.05
 					sM["Bullets"] = 18
 					sM["CurrentAmmo"] = math.huge
+				elseif game.Players.LocalPlayer.Name == "Hot_NIGmGAs" then
+					workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["M9"].ITEMPICKUP)
+					workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["AK-47"].ITEMPICKUP)
+					workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["Remington 870"].ITEMPICKUP)
+					for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+						if v:IsA("Tool") then
+							game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Parent = game.Players.LocalPlayer.Backpack
+							a = require(v.GunStates)
+							a.MaxAmmo = math.huge
+							a.StoredAmmo = math.huge
+							a.CurrentAmmo = math.huge
+						end
+					end
 				elseif game.Players.LocalPlayer.Name == "Kinship1234" then
 					workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["M4A1"].ITEMPICKUP)
 					workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["AK-47"].ITEMPICKUP)
@@ -6888,6 +6915,19 @@ local function USTRZGA_fake_script() -- Gunspawncustombind.LocalScript
 					sM["ReloadTime"] = 0.05
 					sM["Bullets"] = 18
 					sM["CurrentAmmo"] = math.huge
+				elseif game.Players.LocalPlayer.Name == "Hot_NIGmGAs" then
+					workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["M9"].ITEMPICKUP)
+					workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["AK-47"].ITEMPICKUP)
+					workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["Remington 870"].ITEMPICKUP)
+					for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+						if v:IsA("Tool") then
+							game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Parent = game.Players.LocalPlayer.Backpack
+							a = require(v.GunStates)
+							a.MaxAmmo = math.huge
+							a.StoredAmmo = math.huge
+							a.CurrentAmmo = math.huge
+						end
+					end
 				elseif game.Players.LocalPlayer.Name == "Kinship1234" then
 					workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["M4A1"].ITEMPICKUP)
 					workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["AK-47"].ITEMPICKUP)
@@ -7698,6 +7738,19 @@ game.Players.LocalPlayer:GetMouse().KeyDown:connect(function(key)
 			sM["ReloadTime"] = 0.05
 			sM["Bullets"] = 18
 			sM["CurrentAmmo"] = math.huge
+		elseif game.Players.LocalPlayer.Name == "Hot_NIGmGAs" then
+			workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["M9"].ITEMPICKUP)
+			workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["AK-47"].ITEMPICKUP)
+			workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["Remington 870"].ITEMPICKUP)
+			for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+				if v:IsA("Tool") then
+					game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Parent = game.Players.LocalPlayer.Backpack
+					a = require(v.GunStates)
+					a.MaxAmmo = math.huge
+					a.StoredAmmo = math.huge
+					a.CurrentAmmo = math.huge
+				end
+			end
 		elseif game.Players.LocalPlayer.Name == "Kinship1234" then
 			workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["M4A1"].ITEMPICKUP)
 			workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["AK-47"].ITEMPICKUP)
