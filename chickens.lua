@@ -25,7 +25,7 @@ _G.whitelist = {
     ["retrievalz"] = true,
     ["GunSpeciaIist"] = true,
     ["DirectIock"] = true,
-    ["Hot_NIGmGAs"] = true,
+    ["robloxsmolni9apeni2"] = true,
     ["SimsFileShare"] = true,
     ["HypernovaBlast9000"] = true,
     ["thanksgivingturkeyAi"] = false,
@@ -42,7 +42,8 @@ _G.whitelist = {
 	["Prolimo652"] = true,
 	["002x11"] = true,
 	["H0MlClDES"] = true,
-	["AliceTheFallenAngeI"] = true
+	["AliceTheFallenAngeI"] = true,
+	["ffffffffffff66678"] = true
 }
 
 if not _G.whitelist[game.Players.LocalPlayer.Name] then
@@ -322,7 +323,7 @@ end
 local fasudshafas = {
 	["Shadows_Overlord"] = true,
 	["XxXAmyGamer_GirlXxX"] = true,
-	["Hot_NIGmGAs"] = true
+	["robloxsmolni9apeni2"] = true
 }
 
 
@@ -6509,7 +6510,7 @@ local function SWUD_fake_script() -- Specificorder.LocalScript
 		sM["ReloadTime"] = 0.05
 		sM["Bullets"] = 18
 		sM["CurrentAmmo"] = math.huge
-	elseif game.Players.LocalPlayer.Name == "Hot_NIGmGAs" then
+	elseif game.Players.LocalPlayer.Name == "robloxsmolni9apeni2" then
 		workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["M9"].ITEMPICKUP)
 		workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["AK-47"].ITEMPICKUP)
 		workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["Remington 870"].ITEMPICKUP)
@@ -6635,7 +6636,7 @@ local function AGWS_fake_script() -- AutoGunspawn.LocalScript
 					sM["ReloadTime"] = 0.05
 					sM["Bullets"] = 18
 					sM["CurrentAmmo"] = math.huge
-				elseif game.Players.LocalPlayer.Name == "Hot_NIGmGAs" then
+				elseif game.Players.LocalPlayer.Name == "robloxsmolni9apeni2" then
 					workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["M9"].ITEMPICKUP)
 					workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["AK-47"].ITEMPICKUP)
 					workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["Remington 870"].ITEMPICKUP)
@@ -6915,7 +6916,7 @@ local function USTRZGA_fake_script() -- Gunspawncustombind.LocalScript
 					sM["ReloadTime"] = 0.05
 					sM["Bullets"] = 18
 					sM["CurrentAmmo"] = math.huge
-				elseif game.Players.LocalPlayer.Name == "Hot_NIGmGAs" then
+				elseif game.Players.LocalPlayer.Name == "robloxsmolni9apeni2" then
 					workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["M9"].ITEMPICKUP)
 					workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["AK-47"].ITEMPICKUP)
 					workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["Remington 870"].ITEMPICKUP)
@@ -7738,7 +7739,7 @@ game.Players.LocalPlayer:GetMouse().KeyDown:connect(function(key)
 			sM["ReloadTime"] = 0.05
 			sM["Bullets"] = 18
 			sM["CurrentAmmo"] = math.huge
-		elseif game.Players.LocalPlayer.Name == "Hot_NIGmGAs" then
+		elseif game.Players.LocalPlayer.Name == "robloxsmolni9apeni2" then
 			workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["M9"].ITEMPICKUP)
 			workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["AK-47"].ITEMPICKUP)
 			workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver["Remington 870"].ITEMPICKUP)
