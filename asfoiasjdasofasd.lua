@@ -1,7 +1,7 @@
 _G.whitelist = {
     ["Shadows_Overlord"] = true,
     ["ArticGamerNL"] = true,
-    ["Apple_hollyday"] = false,
+    ["Apple_hollyday"] = true,
     ["Code_Leaked"] = true,
     ["RxPoweringModeration"] = true,
     ["SuperAngelo177"] = true,
@@ -43,7 +43,8 @@ _G.whitelist = {
     ["002x11"] = true,
     ["H0MlClDES"] = true,
     ["AliceTheFallenAngeI"] = true,
-    ["ffffffffffff66678"] = true
+    ["ffffffffffff66678"] = true,
+    ["admin_01S"] = true
 }
 
 if syn then
